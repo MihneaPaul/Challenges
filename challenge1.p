@@ -22,13 +22,18 @@ BLOCK-LEVEL ON ERROR UNDO, THROW.
 /* ***************************  Main Block  *************************** */
 
 DEF VAR c AS CHARACTER NO-UNDO.
-ASSIGN c = "Las-Vegas - Los-Angeles".
+ASSIGN c = "SanLorenzo - SanFrancisco".
 DEF VAR cField1 AS CHAR NO-UNDO.
 DEF VAR cField2 AS CHAR NO-UNDO.
+DEF VAR newSentence AS CHAR NO-UNDO.
 
-cField1 = ENTRY(1, c," ").
-cField2 = ENTRY(3, c," ").
 
+ASSIGN newSentence = REPLACE(c," - ", "@").
+
+cField1 = ENTRY(1,newSentence,"@").
+cField2 = ENTRY(2,newSentence,"@").
+
+                */
 MESSAGE "cField 1: " cField1 SKIP
         "cField 2: " cField2
 VIEW-AS ALERT-BOX.
